@@ -1,21 +1,13 @@
 # Groundwell
 
-Static research workspace, label reader, and Dispatch starter. No account, API key, build step, or CDN dependency at runtime.
+Static wellness reference for GitHub Pages. No build step, account, paid service, or runtime API is required.
 
-## Run locally
+## Deploy
 
-Run `npm run dev` with Node.js or serve this folder with a static HTTP server. Open port 4173 in your browser.
+Extract this ZIP into the root of your GitHub Pages repository. `index.html` must sit at the repository root alongside `app.js`, `style.css`, `sw.js`, and `data/`. You can also put all contents together in a `docs/` folder and select that folder as the Pages publishing source. All application paths are relative, so a project subpath also works. Serve over HTTPS for installation and offline reading.
 
-## Publish on GitHub Pages
+The library, videos, and source archive live in `data/library.json`. The written guides and tools live in `app.js`. Edit these files, then publish again. Change `CACHE` in `sw.js` when core content changes so existing installations refresh their offline files.
 
-1. Extract the ZIP and commit its contents to the root of a public GitHub repository on `main`, including the hidden `.github` folder.
-2. Select GitHub Actions in Settings → Pages → Build and deployment.
-3. Run **Publish Groundwell** from the Actions tab if the initial workflow has not started.
+Personal records stay in the browser. My wellness provides a JSON export and restore flow. A new browser or device needs that export to bring the records over. The initial load needs a connection. Offline use starts after the site has been visited and cached.
 
-## Maintain Dispatch
-
-Ask Claude to return a JSON array with title, date (YYYY-MM-DD), topic, kind (Research, Breaking, or Events), HTTPS source URL, and summary. Review every item and its source. Open **Dispatch → Publish Desk**, paste the array and export. Replace the repository's `dispatch.json` with the exported file. The site reads it at runtime.
-
-## Scope
-
-The research collection, ingredient index, and expert directory are starter collections. The scanner uses on-device Tesseract.js and requires the OCR assets on its first run. The English OCR and Chart.js files are vendored under their upstream licenses. Bookmarks and preferences are browser-local. The scanner separates preference flags from potential allergy matches and withholds a numeric toxicity rating when exposure is unknown. Full nutrition logging and personalized protocols are outside this starter.
+The video player loads a third-party embed only when the visitor presses Play. The written notes remain on the page without video access.
