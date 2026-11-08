@@ -61,6 +61,7 @@ function home(){
   tile('Daily practice','Oral health','A practical guide to teeth, gums, food choices and dry mouth.','#oral')
  ].join('');
  return `<section class="hero"><div class="eyebrow">A quieter kind of wellness research</div><h1>Understand your health.<br>Keep your own record.</h1><p>Explore natural health topics in one place, with clear explanations, practical context, and tools for tracking what matters to you.</p><div class="hero-actions"><a class="button" href="#explore">Explore the library</a><a class="button alt" href="#journal">Open my wellness</a></div></section>
+ ${section('Dive into the atlas',`<div class="grid two">${tile('Learn','Digestive health atlas','Explore symptoms, mechanisms, IBS, reflux, H. pylori, celiac disease and more with diagrams.','#atlas')}${tile('Daily practice','Supplement routine','Track each dose, see your daily capsule fill, and anticipate refills.','#routine')}</div>`)}
  ${section('Start with a topic',`<div class="grid three">${featured}</div>`,['All topics','#conditions'])}
  ${section('A reference you can use',`<div class="grid two">${tile('Read','Nutrition foundations','Build a food pattern and research individual needs without a wall of links.','#guide/nutrition')}${tile('Research','Vaccine questions','Ingredients, known effects and what detox claims need to prove.','#vaccine')}</div>`)}
  <div class="profile-strip"><strong>${personal.profile?escapeHtml(personal.profile.name||'Your profile')+' · '+escapeHtml(personal.profile.age)+' years':'Your wellness space'}</strong><p>${personal.profile?'Your intake context and records are available in My wellness.':'Set up a profile, then track supplements, food, symptoms and protocols on this device.'} <a href="#journal"><u>Open My wellness →</u></a></p></div>`;
@@ -180,6 +181,39 @@ const deepArticles={
   related:[['Track symptoms','#journal'],['Nutrition foundations','#guide/nutrition']]
  }
 };
+deepArticles.nutrition={eyebrow:'Nutrition / Reference guide',title:'Nutrition foundations',deck:'A practical framework for building meals, reading claims and finding specific nutrient gaps.',updated:'Reviewed November 2026',highlights:[['01','Build a repeatable pattern'],['02','Find actual gaps'],['03','Track changes over time']],sections:[
+{id:'pattern',title:'What a food pattern does',body:['Nutrition is the combined effect of foods and habits over time. A useful baseline includes varied vegetables and fruit, enough protein, fiber-rich plants, and fat sources that fit a person’s needs. Food access, culture, preferences and medical conditions shape what is realistic. One meal cannot prove a diet is healthy or unhealthy.','Start by describing what you currently eat across an ordinary week. Look for missing food groups, irregular meal timing, and foods you enjoy enough to repeat. A sustainable improvement is more useful than an elaborate plan that lasts three days.']},
+{id:'macros',title:'Protein, carbohydrates and fats',body:['Protein supplies essential amino acids. Eggs, fish, meat, dairy, soy, beans and lentils are examples; amounts and digestibility differ. Carbohydrate foods range from intact grains and fruit to refined sweets, so the category alone says little about a meal. Fat is necessary; the mix of foods, portions and overall energy balance matters.','For a practical plate, choose a protein source, add produce, then add a carbohydrate and fat source appropriate to appetite and activity. Adjust for conditions such as diabetes, kidney disease, allergies or pregnancy with individualized advice.']},
+{id:'fiber',title:'Fiber and the gut',body:['Fiber in beans, vegetables, fruit, nuts and whole grains adds bulk and is fermented to different degrees by gut microbes. Increasing fiber gradually and drinking enough fluid can improve tolerance. Different foods contain different fibers, so variety matters more than a single “gut health” product.','If you have persistent abdominal pain, bleeding, unexplained weight change or significant bowel changes, investigate the symptom rather than assuming it is a normal response to a new food.']},
+{id:'micros',title:'Micronutrient adequacy',body:['Vitamins and minerals have specific roles and intake targets. A food log can reveal patterns such as little iron-rich food, limited B12 sources, or low calcium intake. A supplement is most useful when it addresses a plausible gap, a life-stage need, or a documented deficiency. A high dose is not a substitute for a more complete diet.','Check the nutrient’s form, amount per serving, upper limit, interactions, and the combined amount from fortified foods and other products. The supplement directory provides an individual card for each major nutrient.']},
+{id:'labels',title:'Read labels in context',body:['Start with serving size and the amount you actually eat. Compare fiber, protein, sodium, added sugars and relevant micronutrients, then read the ingredient list for allergens and preferences. A long ingredient list or unfamiliar chemical name does not by itself establish harm.','When comparing two products, ask what the food replaces in your diet and how often you consume it. A numerical “danger score” without exposure, dose and outcome evidence would be misleading.']},
+{id:'experiment',title:'Make an interpretable change',body:['Choose one change, such as adding a regular breakfast, replacing one snack, or increasing beans and vegetables. Record a baseline and the intended outcome, then observe over a few weeks. Mood and energy vary for many reasons; a food diary shows patterns but cannot establish cause.','If a restrictive diet is proposed, write down its purpose, duration, how nutrients will be maintained, and what result would justify continuing it. For diagnosed conditions, follow the condition-specific nutrition requirements.']}
+],source:[['Dietary Guidelines for Americans','https://www.dietaryguidelines.gov/'],['NIH Office of Dietary Supplements fact sheets','https://ods.od.nih.gov/factsheets/list-all/'],['NIDDK nutrition and healthy eating','https://www.niddk.nih.gov/health-information/weight-management/healthy-eating-physical-activity-for-life']],related:[['Supplement library','#supplements'],['Track meals','#journal']]};
+deepArticles.autoimmune={eyebrow:'Immune health / Reference guide',title:'Autoimmune health',deck:'Different diagnoses affect different tissues. Build a plan around the specific condition, its activity and nutritional needs.',updated:'Reviewed November 2026',highlights:[['01','Confirm the diagnosis'],['02','Protect function'],['03','Test specific nutrition gaps']],sections:[
+{id:'scope',title:'Why the diagnosis matters',body:['Autoimmune diseases are not one syndrome. Rheumatoid arthritis affects joints and can affect other organs; celiac disease requires strict gluten avoidance; autoimmune thyroid disease creates different questions again. The symptoms, tests and appropriate care differ. A general “immune boost” does not describe a useful target.','Record the diagnosis, affected organs, current treatment and what a flare means in your case. Sudden new weakness, chest symptoms, severe pain or organ-related symptoms deserve prompt evaluation.']},
+{id:'food',title:'Food and elimination diets',body:['A balanced dietary pattern can help meet protein, fiber and micronutrient needs. Some conditions have a specific established dietary intervention, most clearly gluten avoidance for celiac disease. Beyond these, claims that one exclusion diet treats all autoimmune diseases outrun the evidence.','An elimination experiment should have a clear hypothesis, short review interval and a plan for adequate nutrition. Restricting many foods can cause deficiencies and obscure whether a change truly helped.']},
+{id:'movement',title:'Movement, rest and pacing',body:['Joint pain and fatigue can make movement difficult, yet appropriately adapted activity helps function and well-being for many people. In rheumatoid arthritis, plans may combine aerobic activity, strengthening and range-of-motion work with rest during active symptoms. The right level depends on disease activity and limitations.','Track what you could do before and after activity, not just whether you exercised. A pattern of prolonged worsening suggests the plan needs adjustment.']},
+{id:'nutrients',title:'Nutrients worth checking',body:['Dietary limitations, inflammation, medication use and organ involvement can change nutritional needs. Iron, B12, vitamin D, calcium and folate may be relevant in particular settings, but the reason and interpretation vary. Blood tests and diet history are more useful than a universal stack.','High dose vitamin A, selenium, iodine or other products can cause harm. Bring a complete product list to a clinician or pharmacist, especially when taking immune-modifying medicines.']},
+{id:'tracking',title:'Build a useful flare record',body:['Track symptoms, morning stiffness, sleep, activity, infection, menstrual cycle if applicable, medications and diet changes. Note the duration and effect on function. Keep the record simple enough to sustain.','An association in a diary is a lead for investigation, not proof that a food or supplement caused the change. Avoid changing multiple variables at once.']},
+{id:'evidence',title:'Assess a proposed protocol',body:['Ask which named disease and outcome the study measured, whether participants were similar to you, how long follow-up lasted, and what adverse effects occurred. A testimonial about “reversing autoimmunity” does not answer those questions.','Discuss any plan to stop an established treatment. Delayed control of active disease can allow damage even when day-to-day symptoms fluctuate.']}
+],source:[['NIAMS rheumatoid arthritis overview','https://www.niams.nih.gov/health-topics/rheumatoid-arthritis'],['NIAMS arthritis exercise','https://www.niams.nih.gov/health-topics/arthritis-and-rheumatic-diseases'],['NIDDK celiac disease treatment','https://www.niddk.nih.gov/health-information/digestive-diseases/celiac-disease/treatment']],related:[['Nutrition foundations','#guide/nutrition'],['Track symptoms','#journal']]};
+deepArticles.adhd={eyebrow:'Brain health / Reference guide',title:'ADHD and daily function',deck:'Explore sleep, structure, activity and nutrition with clear expectations about what is and is not established.',updated:'Reviewed November 2026',highlights:[['01','Map the difficulty'],['02','Simplify routines'],['03','Check evidence and safety']],sections:[
+{id:'picture',title:'Describe the actual problem',body:['ADHD involves persistent patterns of inattention and/or hyperactivity-impulsivity that impair function. Sleep deprivation, anxiety, depression, medication effects and other conditions can also affect attention. An assessment helps identify what is happening and whether more than one issue is present.','Write down where the difficulty occurs, its duration, what tasks are affected, and what reliably helps. This is more useful than a single online score.']},
+{id:'structure',title:'Design the environment',body:['Use one capture place for tasks, break work into visible next steps, schedule short work blocks, and reduce avoidable interruptions. Put cues where actions occur: medicines beside a routine, supplies at the work location, and reminders tied to a time or event.','Compare a small number of changes over two to four weeks using outcomes such as completed tasks, missed appointments or time to start work.']},
+{id:'sleep',title:'Sleep and activity',body:['Consistent wake times, a wind-down routine and attention to caffeine timing can help clarify how much sleep loss contributes to symptoms. Physical activity may have small to moderate short-term benefits for some ADHD outcomes, but study methods and populations vary.','An exercise or mindfulness practice can be a supportive routine without being presented as a replacement for an individualized care plan.']},
+{id:'nutrition',title:'Food, omega-3s and deficiencies',body:['Regular meals and adequate calories can prevent hunger from worsening concentration. If someone eats a limited range of foods, assess nutrient adequacy. Omega-3 supplements have been studied extensively, yet overall evidence for meaningful ADHD symptom improvement remains uncertain and effect estimates are small or inconsistent.','A blood test or diet history may identify a specific deficiency that merits correction. Avoid promising that one supplement treats ADHD in everyone.']},
+{id:'interactions',title:'Product and medicine review',body:['Herbal and stimulant-like products can affect sleep, heart rate or prescribed medicines. Record exact product, dose and timing rather than treating all “natural focus” blends as equivalent.','If symptoms change sharply, functioning declines or there are safety concerns, seek an appropriate clinical evaluation.']},
+{id:'log',title:'A four-week tracking experiment',body:['Week one: record sleep, meals, caffeine and two functional outcomes without changing anything. Week two: choose one routine change. Weeks three and four: keep the same measures and review whether the improvement lasted.','Keep confounders visible, including illness, travel, workload and medication changes. The journal is a record of observations, not a diagnostic test.']}
+],source:[['NCCIH ADHD complementary approaches','https://www.nccih.nih.gov/health/attention-deficit-hyperactivity-disorder-at-a-glance'],['NIMH ADHD overview','https://www.nimh.nih.gov/health/topics/attention-deficit-hyperactivity-disorder-adhd']],related:[['Nutrition foundations','#guide/nutrition'],['Track focus','#journal']]};
+deepArticles.depression={eyebrow:'Brain health / Reference guide',title:'Depression and supportive care',deck:'A grounded look at sleep, movement, social connection, nutrition and the limits of supplement claims.',updated:'Reviewed November 2026',highlights:[['01','Assess persistence'],['02','Choose manageable actions'],['03','Review interactions']],sections:[
+{id:'recognize',title:'Recognize the full pattern',body:['Depression can affect mood, interest, energy, concentration, sleep, appetite and function. Symptoms lasting weeks or interfering with daily life deserve assessment. Medical conditions, medications and other mental health concerns can overlap.','A daily record of mood and function can help convey a pattern. It does not tell you that a particular nutrient or event is the sole cause. If you feel at risk of harming yourself, seek immediate local emergency help.']},
+{id:'rhythm',title:'Sleep, light and daily rhythm',body:['A consistent wake time, daytime light and a manageable evening routine can support regular sleep. Difficulty sleeping may be a symptom that requires its own assessment. Treat a proposed sleep routine as an experiment with a stated outcome, not a cure.','Track bedtime, waking, daytime energy and naps for several weeks. Travel, shift work and illness can explain fluctuations.']},
+{id:'movement',title:'Activity and connection',body:['Exercise can help some people with depressive symptoms. Begin at a level possible today, even brief walking, and increase gradually. Social contact and planned meaningful activity may reduce isolation and help daily structure.','A plan that is too demanding can fail because the person is already unwell. Set small, repeatable goals and notice whether functioning actually improves.']},
+{id:'food',title:'Nutrition and specific gaps',body:['Regular meals and an adequate diet help meet basic needs. If appetite is low, weight changes or intake is restricted, review possible deficiencies and practical food access. Correcting a documented deficiency is different from claiming that high dose vitamins treat depression.','Omega-3 supplements have mixed evidence for depressive symptoms. Product composition, study populations and comparison treatments differ, so a broad promise is not supported.']},
+{id:'herbs',title:'St John’s wort and other products',body:['St John’s wort has been studied for depression, with findings that vary by severity and study. It interacts with many medicines, including antidepressants and medications affected by drug-metabolizing enzymes. Combining it with serotonergic drugs can be dangerous.','Bring every supplement and medication to a qualified professional before starting or stopping a product. “Natural” describes origin, not interaction risk.']},
+{id:'next',title:'When to seek more help',body:['Worsening symptoms, impaired self-care, inability to work, or thoughts of self-harm call for timely support. Depression is treatable, and combining supportive daily practices with appropriate care can be reasonable.','A clinician can review sleep, medicines, medical causes and treatment options. Track the outcomes that matter to you, such as ability to get out of bed, social contact and work function.']}
+],source:[['NCCIH depression complementary approaches','https://www.nccih.nih.gov/health/depression'],['NCCIH St John’s wort','https://www.nccih.nih.gov/health/st-johns-wort'],['NIMH depression overview','https://www.nimh.nih.gov/health/topics/depression']],related:[['Nutrition foundations','#guide/nutrition'],['Track mood','#journal']]};
+
 function deepPage(id){
  const d=deepArticles[id];if(!d)return notFound();
  const anchors=d.sections.map(s=>'<button type="button" data-jump="'+id+'-'+s.id+'">'+escapeHtml(s.title)+'</button>').join('');
@@ -219,12 +253,135 @@ function profileTarget(name,p){
 function supplements(){
  return `${pageHeader('Reference library','Supplements & nutrients','Search by name, alternate name, or food source. Open a full card for history, uses, intake guidance, timing, and safety.')}<input id="nutrient-search" class="search" type="search" placeholder="Search vitamin D, B12, magnesium…"><div class="profile-strip"><strong>${personal.profile?'Profile active · '+escapeHtml(personal.profile.age)+' years':'General adult reference'}</strong><p>Daily targets include food and supplements. <a href="#journal"><u>${personal.profile?'Edit profile':'Set up a profile'} →</u></a></p></div><div id="nutrient-list" class="grid three"></div>`;
 }
+const nutrientDepth={
+ 'vitamin-a':{
+ focus:'Retinol is the preformed form found in animal foods. Colorful plants supply carotenoids that the body can convert to vitamin A. The conversion differs between people and foods, so the two sources should not be treated as identical milligram for milligram.',
+ use:'Vitamin A supports vision in low light, immune defenses, growth, and normal tissue development. Deficiency can affect night vision and the eyes, but extra intake above an adequate amount has not been shown to improve vision in a well-nourished adult.',
+ practice:'Compare the total from food, fortified products, and supplements. A label may list retinyl palmitate, retinyl acetate, or beta-carotene. The upper limit applies to preformed vitamin A; pregnancy warrants particular care with high-retinol products.',
+ question:'Is the concern low dietary intake, a diagnosed deficiency, or a promise of better eyesight? Those are different questions.'
+ },
+ 'vitamin-b1':{
+ focus:'Thiamin is a water-soluble B vitamin. Enriched grain products, pork, legumes, and seeds can supply it. Its role became clear when diets based on polished rice were linked with beriberi.',
+ use:'Thiamin helps enzymes release energy from carbohydrates and supports nerve function. People with poor intake, some malabsorption conditions, or heavy alcohol use may be at higher risk of deficiency.',
+ practice:'A routine supplement is usually taken with a meal for convenience, though no specific hour is required. Look at dietary pattern and any condition affecting absorption before assuming a large dose is necessary.',
+ question:'Is there a dietary gap or a medical reason to suspect deficiency?'
+ },
+ 'vitamin-b2':{
+ focus:'Riboflavin becomes part of the FAD and FMN coenzymes, which participate in many energy-related reactions. Dairy, eggs, meat, almonds, and fortified grains are common sources.',
+ use:'Low riboflavin can contribute to mouth and skin changes and may occur alongside other B-vitamin gaps. It has been studied at higher doses for migraine prevention, a separate use from ordinary dietary adequacy.',
+ practice:'Check the product amount before combining a B-complex with a multivitamin. Bright yellow urine after a supplement is a familiar effect of excess riboflavin and is not proof of a therapeutic benefit.',
+ question:'Is the goal meeting a daily intake target or discussing a specific clinical use such as migraine?'
+ },
+ 'vitamin-b3':{
+ focus:'Niacin includes nicotinic acid and nicotinamide. The body can also make some niacin from the amino acid tryptophan, which is why intake is expressed as niacin equivalents.',
+ use:'Niacin supports energy metabolism, skin, and nervous-system function. Severe deficiency causes pellagra. High-dose nicotinic acid used for blood lipids is a drug-level intervention and should not be confused with a nutritional serving.',
+ practice:'Compare the form and dose on the label. Nicotinic acid can cause flushing; larger amounts can affect the liver and glucose. The adult upper limit for routine supplemental intake is far below doses sometimes used clinically.',
+ question:'Which form is in the product, and what outcome is the dose meant to change?'
+ },
+ 'vitamin-b5':{
+ focus:'Pantothenic acid is a component of coenzyme A. It occurs across many foods, including poultry, mushrooms, eggs, and whole grains, which helps explain why deficiency is uncommon with varied eating.',
+ use:'Coenzyme A participates in fatty-acid metabolism and many other biochemical reactions. Marketing claims that pantothenic acid alone will raise energy or clear acne need to be evaluated separately from its essential nutrient role.',
+ practice:'Start with food pattern and the adequate-intake target. A standard multivitamin often supplies a daily amount. Very large doses can cause gastrointestinal discomfort without a clear reason to use them.',
+ question:'Is a marketed benefit supported by a human trial, or only by the fact that the vitamin is essential?'
+ },
+ 'vitamin-b6':{
+ focus:'Vitamin B6 is a group of related compounds. Pyridoxine is common in supplements, while pyridoxal 5-phosphate is an active coenzyme form. Foods include chickpeas, poultry, fish, and potatoes.',
+ use:'B6 supports amino-acid metabolism, hemoglobin, and neurotransmitter synthesis. That biochemical role does not mean a high-dose B6 supplement treats every mood or nerve symptom.',
+ practice:'Add up B6 from multivitamins, B-complex products, and single-ingredient tablets. Long-term high intakes can injure sensory nerves. Tingling or numbness while taking B6 deserves a review of all product labels.',
+ question:'What is the total daily B6 amount across every product, and how long has it been used?'
+ },
+ 'vitamin-b7':{
+ focus:'Biotin helps enzymes involved in fat, carbohydrate, and amino-acid metabolism. Deficiency is uncommon in people eating varied foods. Cooked eggs, fish, nuts, and seeds provide it.',
+ use:'High-dose biotin is marketed for hair and nails, but evidence for benefit in a person without deficiency is limited. Hair changes have many possible causes that a supplement cannot identify.',
+ practice:'Biotin can interfere with certain laboratory tests, including tests used for thyroid and heart problems. Tell the laboratory and clinician about any biotin product before testing. No special morning or evening timing is established.',
+ question:'Is there evidence of deficiency, and could the supplement interfere with a test you are having?'
+ },
+ 'vitamin-b9':{
+ focus:'Folate is the broad nutrient family. Food folate, folic acid, and 5-MTHF have different chemistry and labeling conventions. Dietary folate equivalents account for differences in absorption.',
+ use:'Folate supports DNA synthesis and cell division. Adequate intake around conception matters for neural-tube development. A common gene variant alone does not establish that someone needs a large methylfolate dose.',
+ practice:'The preconception and pregnancy question deserves specific guidance. Folic acid has the strongest established prevention evidence for neural-tube defects. Large amounts of supplemental folate can complicate recognition of a B12 deficiency.',
+ question:'Is the goal general adequacy, pregnancy planning, or treatment of a documented problem?'
+ },
+ 'vitamin-b12':{
+ focus:'B12 in foods is attached to protein and requires normal digestion for release. Supplements contain free B12. Cyanocobalamin and methylcobalamin are common forms; available evidence has not shown that one form is universally better absorbed.',
+ use:'B12 is needed for red cells, DNA, and nerve function. People avoiding animal foods, older adults, and people taking metformin or acid-suppressing drugs may need closer attention to intake or status.',
+ practice:'A large number on a supplement label is not the amount absorbed. Absorption becomes less efficient at higher doses. A suspected deficiency, especially with neurologic symptoms, calls for an evaluation of the cause and an appropriate treatment route.',
+ question:'Is the concern low intake, impaired absorption, or a documented deficiency?'
+ },
+ 'vitamin-c':{
+ focus:'Vitamin C is a water-soluble nutrient in peppers, citrus, kiwi, berries, and many vegetables. It is needed for collagen formation and improves absorption of nonheme iron from plant foods.',
+ use:'Severe deficiency causes scurvy. Vitamin C supports normal immune function, but that essential role does not mean very high doses prevent every infection or shorten every illness.',
+ practice:'Food can supply the daily target. People who smoke have a higher recommended intake. Large supplemental amounts may cause diarrhea or cramping. Pairing a vitamin-C-rich food with beans or lentils can help iron absorption.',
+ question:'Would a food change meet the goal without a high-dose product?'
+ },
+ 'vitamin-d':{
+ focus:'Vitamin D3 and D2 are the common supplemental forms. Skin makes vitamin D with ultraviolet exposure, while fatty fish and fortified foods provide some. Intake alone cannot tell you an individual blood level.',
+ use:'Vitamin D helps absorb calcium and maintain bone health. Trials for unrelated conditions have produced mixed results, so a low level, a bone-health goal, and a general wellness claim should be considered separately.',
+ practice:'A meal containing fat may improve absorption. Age changes the daily target after 70. A supplement label often uses IU, while reference tables use micrograms: 1 mcg equals 40 IU. Excess intake can raise blood calcium.',
+ question:'Is there a reason to check status or discuss a different dose because of an established condition?'
+ },
+ 'vitamin-e':{
+ focus:'Vitamin E is a family of compounds. The adult intake target is expressed as alpha-tocopherol. Nuts, seeds, and several plant oils supply it alongside other nutrients.',
+ use:'It acts as an antioxidant in cells and supports normal immune function. Results from studies of high-dose supplementation for disease prevention have not justified treating all antioxidant claims as equivalent.',
+ practice:'A food source is different from a high-dose capsule. Some large doses can increase bleeding risk, especially with anticoagulant medicines. Check whether multiple products contain vitamin E.',
+ question:'Does a product supply a nutritional amount or a much higher therapeutic claim?'
+ },
+ 'vitamin-k':{
+ focus:'Vitamin K1 is abundant in leafy greens. K2 refers to several menaquinones found in some animal and fermented foods. These forms share roles but are not interchangeable in every study.',
+ use:'Vitamin K helps activate proteins needed for normal clotting and contributes to bone-protein activity. Interest in K2 and cardiovascular or bone outcomes is active research, with claims varying by product and study.',
+ practice:'For someone taking warfarin, consistency of vitamin K intake matters. Do not abruptly change leafy-green intake or add K products without discussing the plan with the prescribing team. Routine timing has no established special hour.',
+ question:'Does a study address the same K form, dose, population, and outcome as the product being considered?'
+ },
+ 'calcium':{
+ focus:'Calcium comes from dairy, fortified beverages, calcium-set tofu, greens such as kale, and fish eaten with bones. Spinach contains calcium but much of it is poorly absorbed because of oxalate.',
+ use:'Calcium supports bones, muscle contraction, and nerve signaling. The daily target changes for women after 50 and men after 70. Bone health also depends on vitamin D status, activity, and other factors.',
+ practice:'Calcium carbonate is usually taken with food; citrate is less dependent on stomach acid. Supplemental absorption is highest at 500 mg or less at a time. Check the elemental calcium amount and separate from medicines when instructed.',
+ question:'How much calcium is already coming from food before adding a supplement?'
+ },
+ 'magnesium':{
+ focus:'Magnesium is present in legumes, nuts, seeds, leafy greens, and whole grains. The elemental magnesium amount on a label matters more than the total weight of a salt such as magnesium citrate.',
+ use:'It is involved in hundreds of enzyme reactions and normal muscle and nerve function. Supplements have been studied for particular conditions, but a biological role does not prove a broad sleep or anxiety benefit for everyone.',
+ practice:'Forms differ in solubility and gastrointestinal effects. Oxide may be less well absorbed than some other salts. Supplemental magnesium can cause diarrhea and can interfere with absorption of certain antibiotics or bone medicines if taken together.',
+ question:'Which form and elemental dose is being taken, and is a medication-spacing issue present?'
+ },
+ 'iron':{
+ focus:'Heme iron from animal foods and nonheme iron from plants differ in absorption. Beans, lentils, fortified grains, and meat can contribute. Vitamin C with plant iron improves absorption.',
+ use:'Iron is needed for hemoglobin and oxygen transport. Requirements vary markedly with age, sex, pregnancy, and menstrual status. Fatigue alone does not establish iron deficiency.',
+ practice:'Iron supplements can cause gastrointestinal effects and are dangerous to children if accidentally swallowed. Calcium supplements can reduce absorption when taken together. A suspected deficiency calls for evaluating iron status and the reason for low stores.',
+ question:'What do hemoglobin and iron studies show, and why might iron stores be low?'
+ },
+ 'zinc':{
+ focus:'Zinc is found in oysters, meat, beans, seeds, and nuts. Plant compounds can reduce absorption, so food pattern can affect availability.',
+ use:'Zinc supports immune-cell activity, wound healing, growth, and taste. Zinc lozenges have been studied for the common cold, a distinct question from taking a daily zinc tablet indefinitely.',
+ practice:'Long-term high zinc can reduce copper status and lead to problems of its own. Zinc can also interfere with certain antibiotics. Add up zinc from multivitamins and individual products.',
+ question:'Is this short-term use for a studied outcome or a daily dose continued for months?'
+ },
+ 'iodine':{
+ focus:'Iodine is needed to make thyroid hormones. Iodized salt, seafood, and dairy are common sources. Kelp products vary greatly in iodine content.',
+ use:'Adequate iodine is particularly important during pregnancy and lactation. Both too little and too much can affect thyroid function, so a high-dose seaweed supplement is not automatically beneficial.',
+ practice:'Check whether household salt is iodized and whether other supplements contain iodine. Thyroid disease or thyroid medicines make individual advice more important. Pregnancy guidance differs from the ordinary adult target.',
+ question:'Is intake actually low, and is there a thyroid condition that changes the plan?'
+ },
+ 'selenium':{
+ focus:'Selenium content of plant foods depends on soil. Seafood, meat, eggs, and Brazil nuts can supply it. A few Brazil nuts may contain very different amounts.',
+ use:'Selenium is part of proteins involved in antioxidant defenses and thyroid hormone metabolism. Studies of supplementation for broad disease prevention do not support assuming more is better.',
+ practice:'Compare the product amount with food and the upper limit. Repeated large intakes can cause hair and nail changes, gastrointestinal symptoms, and other problems. Avoid stacking high-selenium products.',
+ question:'Is the proposed benefit backed by an outcome study or only a mechanistic theory?'
+ },
+ 'omega-3-fats':{
+ focus:'ALA is an essential plant omega-3 in flax, chia, walnuts, and some oils. EPA and DHA occur mainly in fish and algae. Conversion of ALA into EPA and DHA is limited and variable.',
+ use:'Omega-3 fats are part of normal cell membranes. Prescription EPA/DHA products for high triglycerides are a different context from an ordinary fish-oil capsule. Evidence for ADHD, mood, and broad prevention is mixed by outcome.',
+ practice:'Read the EPA and DHA amounts per serving rather than the total fish-oil weight. Check product quality and discuss high doses if using anticoagulants or if atrial fibrillation is a concern. Fish and algae foods can be considered alongside supplements.',
+ question:'Which omega-3 form, amount, and health outcome is the study actually about?'
+ }
+};
+
 function nutrientDetail(id){
  const n=library.nutrients.find(x=>x.id===id);
  if(!n)return notFound();
  const f=n.fields,target=personal.profile?profileTarget(n.name,personal.profile):null;
  return `<div class="article"><a href="#supplements" class="eyebrow">← Nutrient library</a><h1>${escapeHtml(n.name)}</h1><p class="lede">${escapeHtml(f['What it does'])}</p><p class="muted">Also known as ${escapeHtml(n.aliases)}</p>${target?`<div class="profile-strip"><strong>Profile daily target · ${escapeHtml(target)}</strong><p>This is a total intake target from food and supplements, not a suggested supplement dose.</p></div>`:''}
- <div class="detail-grid"><section><h3>History</h3><p>${escapeHtml(f.History)}</p></section><section><h3>Food sources</h3><p>${escapeHtml(f['Food sources'])}</p></section><section><h3>General adult intake</h3><p>${escapeHtml(f['U.S. daily intake'])}</p></section><section><h3>Timing & use</h3><p>${escapeHtml(f['When to take it'])}</p></section></div><div class="callout"><strong>Limits and considerations</strong><br>${escapeHtml(f['Upper limit and cautions'])}</div><p>Daily intake guidance varies by life stage and individual circumstances. Record any product form and amount in My wellness before comparing your total intake.</p><div class="sourcebox"><details><summary>Reference and review notes</summary><p>${sources.nutrient} Reviewed November 2026.</p><a href="${escapeHtml(n.source)}" target="_blank" rel="noopener noreferrer">Detailed nutrient reference ↗</a></details></div><p style="margin-top:30px"><a class="button dark" href="#journal">Track this nutrient</a></p></div>`;
+ <div class="detail-grid"><section><h3>History</h3><p>${escapeHtml(f.History)}</p></section><section><h3>Food sources</h3><p>${escapeHtml(f['Food sources'])}</p></section><section><h3>General adult intake</h3><p>${escapeHtml(f['U.S. daily intake'])}</p></section><section><h3>Timing & use</h3><p>${escapeHtml(f['When to take it'])}</p></section></div>${nutrientDepth[id]?`<div class="nutrient-reading"><h2>Forms and food context</h2><p>${escapeHtml(nutrientDepth[id].focus)}</p><h2>What the evidence addresses</h2><p>${escapeHtml(nutrientDepth[id].use)}</p><h2>Practical use</h2><p>${escapeHtml(nutrientDepth[id].practice)}</p><div class="insight"><strong>Question to ask</strong><br>${escapeHtml(nutrientDepth[id].question)}</div></div>`:''}<div class="callout"><strong>Limits and considerations</strong><br>${escapeHtml(f['Upper limit and cautions'])}</div><p>Daily intake guidance varies by life stage and individual circumstances. Record any product form and amount in My wellness before comparing your total intake.</p><div class="sourcebox"><details><summary>Reference and review notes</summary><p>${sources.nutrient} Reviewed November 2026.</p><a href="${escapeHtml(n.source)}" target="_blank" rel="noopener noreferrer">Detailed nutrient reference ↗</a></details></div><p style="margin-top:30px"><a class="button dark" href="#routine">Add to supplement routine</a></p></div>`;
 }
 function renderNutrients(q=''){
  const matches=library.nutrients.filter(n=>(n.name+' '+n.aliases+' '+n.fields['Food sources']).toLowerCase().includes(q.toLowerCase().trim()));
@@ -254,8 +411,8 @@ function explore(){
 }
 function renderExplore(){
  const q=($('#explore-search')?.value||'').trim().toLowerCase(),type=$('#explore-type')?.value||'all';
- const guides=[{name:'Mold & indoor air',text:deepArticles.mold.sections.map(x=>x.body.join(' ')).join(' '),href:'#mold'},{name:'Oral health',text:deepArticles.oral.sections.map(x=>x.body.join(' ')).join(' '),href:'#oral'},
- {name:'COVID vaccination',text:deepArticles.vaccine.sections.map(x=>x.body.join(' ')).join(' '),href:'#vaccine'},...Object.entries(conditionData).map(([id,d])=>({name:d.title,text:d.intro+' '+d.sections.map(x=>x.join(' ')).join(' '),href:'#guide/'+id}))];
+ const guides=[...ATLAS.map(x=>({name:x.title,text:x.deck+' '+x.sections.flat().join(' '),href:'#chapter/'+x.id})),{name:'Mold & indoor air',text:deepArticles.mold.sections.map(x=>x.body.join(' ')).join(' '),href:'#mold'},{name:'Oral health',text:deepArticles.oral.sections.map(x=>x.body.join(' ')).join(' '),href:'#oral'},
+ {name:'COVID vaccination',text:deepArticles.vaccine.sections.map(x=>x.body.join(' ')).join(' '),href:'#vaccine'},...Object.keys(conditionData).map(id=>({name:deepArticles[id].title,text:deepArticles[id].deck+' '+deepArticles[id].sections.map(x=>x.body.join(' ')).join(' '),href:'#guide/'+id}))];
  const all=[
  ...guides.map(x=>({type:'guide',title:x.name,description:'Groundwell guide',text:x.text,href:x.href})),
  ...library.nutrients.map(x=>({type:'nutrient',title:x.name,description:x.fields['What it does'],text:x.aliases+' '+Object.values(x.fields).join(' '),href:'#nutrient/'+x.id})),
@@ -320,7 +477,7 @@ function bindJournal(tab){
  };
 }
 function exportData(){
- const blob=new Blob([JSON.stringify({schema:2,exportedAt:new Date().toISOString(),profile:personal.profile,entries:personal.entries},null,2)],{type:'application/json'});
+ const blob=new Blob([JSON.stringify({schema:2,exportedAt:new Date().toISOString(),profile:personal.profile,entries:personal.entries,routine},null,2)],{type:'application/json'});
  const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='groundwell-wellness-backup.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),5000);
 }
 async function restoreData(e){
@@ -330,13 +487,28 @@ async function restoreData(e){
   const data=JSON.parse(await f.text());
   if(data.schema!==2||!Array.isArray(data.entries)||data.entries.some(x=>!x||typeof x.id!=='string'||typeof x.type!=='string'||typeof x.title!=='string'||typeof x.date!=='string'||typeof x.detail!=='string')||(data.profile!==null&&typeof data.profile!=='object'))throw Error('This is not a Groundwell backup.');
   if(!confirm('Replace the profile and entries on this device with this backup?'))return;
-  personal={profile:data.profile,entries:data.entries};persist();bindJournal('overview');
+  personal={profile:data.profile,entries:data.entries};persist();if(data.routine&&Array.isArray(data.routine.people)&&data.routine.people.every(x=>x&&typeof x.id==='string'&&typeof x.name==='string')&&Array.isArray(data.routine.products)&&data.routine.products.every(x=>x&&typeof x.id==='string'&&typeof x.personId==='string'&&typeof x.name==='string'&&typeof x.dose==='string'&&Array.isArray(x.times)&&Array.isArray(x.days)&&Number.isFinite(Number(x.stock))&&Number.isFinite(Number(x.perDose)))&&Array.isArray(data.routine.doses)&&data.routine.doses.every(x=>x&&typeof x.productId==='string'&&typeof x.date==='string'&&typeof x.time==='string'&&['taken','skipped'].includes(x.status))){routine=data.routine;routineSave()}if(location.hash==='#routine'){view.innerHTML=routinePage();bindRoutine()}else bindJournal('overview');
  }catch(err){alert(err.message||'Could not restore this file.')}
 }
+function atlasVisual(type){
+ const common='<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 L7 3.5 L0 7" fill="#879f7a"/></marker></defs>';
+ if(type==='path')return `<svg viewBox="0 0 720 180" role="img" aria-label="Digestive route from mouth through stomach and small intestine to colon">${common}<path d="M88 89H620" stroke="#879f7a" stroke-width="3" marker-end="url(#arrow)"/>${['Mouth','Esophagus','Stomach','Small intestine','Colon'].map((t,i)=>`<circle cx="${90+i*128}" cy="89" r="25" fill="#d7e4d1" stroke="#63846b"/><text x="${90+i*128}" y="94" text-anchor="middle" fill="#24443d" font-size="16">${i+1}</text><text x="${90+i*128}" y="143" text-anchor="middle" fill="#35463f" font-size="13">${t}</text>`).join('')}</svg>`;
+ if(type==='gutbrain')return `<svg viewBox="0 0 720 180" role="img" aria-label="Two-way communication between gut and brain">${common}<circle cx="170" cy="88" r="55" fill="#dce9e0"/><circle cx="550" cy="88" r="55" fill="#e6dfcf"/><text x="170" y="95" text-anchor="middle" font-size="24" fill="#24443d">GUT</text><text x="550" y="95" text-anchor="middle" font-size="24" fill="#24443d">BRAIN</text><path d="M230 70H480" stroke="#63846b" stroke-width="3" marker-end="url(#arrow)"/><path d="M490 107H240" stroke="#63846b" stroke-width="3" marker-end="url(#arrow)"/><text x="360" y="57" text-anchor="middle" font-size="13">signals and sensation</text><text x="360" y="136" text-anchor="middle" font-size="13">stress and regulation</text></svg>`;
+ if(type==='ferment')return `<svg viewBox="0 0 720 180" role="img" aria-label="Fermentable carbohydrate pathway: food, water and fermentation, symptoms in sensitive people">${common}<path d="M110 88H620" stroke="#879f7a" stroke-width="3" marker-end="url(#arrow)"/>${['Food','Small bowel','Colon microbes','Gas and water','Sensation'].map((t,i)=>`<rect x="${37+i*135}" y="59" width="116" height="58" rx="15" fill="${i%2?'#e9e2d5':'#dce9e0'}"/><text x="${95+i*135}" y="93" text-anchor="middle" font-size="13" fill="#24443d">${t}</text>`).join('')}</svg>`;
+ if(type==='evidence')return `<svg viewBox="0 0 720 180" role="img" aria-label="Evidence ladder from mechanism and anecdotes to controlled human outcomes">${common}${['Mechanism','Anecdote','Observational','Controlled trial'].map((t,i)=>`<rect x="${40+i*170}" y="${110-i*25}" width="140" height="${35+i*25}" rx="7" fill="${['#e5e6da','#dce5d4','#c9dcd0','#a9c9b8'][i]}"/><text x="${110+i*170}" y="${135-i*12}" text-anchor="middle" font-size="13" fill="#24443d">${t}</text>`).join('')}</svg>`;
+ return `<svg viewBox="0 0 720 180" role="img" aria-label="Symptom timeline with meals, symptoms and bowel changes"><path d="M35 132H690" stroke="#869f90" stroke-width="2"/>${['Morning','Midday','Evening'].map((t,i)=>`<circle cx="${125+i*225}" cy="132" r="7" fill="#63846b"/><text x="${125+i*225}" y="160" text-anchor="middle" font-size="14">${t}</text>`).join('')}<path d="M60 88 Q150 20 260 78 T480 65 T670 92" fill="none" stroke="#bd8069" stroke-width="4"/><text x="340" y="32" text-anchor="middle" font-size="14">Record pattern and timing</text></svg>`;
+}
+function atlasHome(){return `${pageHeader('Groundwell atlas','Learn inside the library','A connected reading desk for digestive health, nutrition, supplements, oral health, indoor air, and more. Search the full text of each chapter.')}<div class="atlas-bar"><input class="search" id="atlas-search" type="search" placeholder="Search symptoms, foods, mechanisms or chapters" aria-label="Search chapters"><select id="atlas-filter" aria-label="Filter chapter category"><option value="all">All chapters</option>${[...new Set(ATLAS.map(x=>x.category))].map(c=>`<option>${escapeHtml(c)}</option>`).join('')}</select></div><p class="muted" id="atlas-count"></p><div id="atlas-results" class="grid three"></div><div class="paper"><a class="button dark" href="#glossary">Explore glossary and reading paths</a></div><div class="paper"><h2>Continue through Groundwell</h2><div class="grid three">${tile('Reference','20 nutrient cards','History, forms, food sources, intake and cautions.','#supplements')}${tile('Environment','Mold and indoor air','Moisture, cleanup and interpreting tests.','#mold')}${tile('Daily care','Oral health','Teeth, gums and food choices.','#oral')}${tile('Brain health','ADHD and depression','Evidence and practical tracking.','#conditions')}${tile('People','Expert directory','Thirty people to investigate with context.','#people')}${tile('Practice','Supplement routine','A daily capsule and refill planner.','#routine')}</div></div>`}
+function renderAtlas(){const q=($('#atlas-search')?.value||'').trim().toLowerCase(),cat=$('#atlas-filter')?.value||'all';const rows=ATLAS.filter(x=>(cat==='all'||x.category===cat)&&(`${x.title} ${x.deck} ${x.sections.flat().join(' ')}`.toLowerCase().includes(q)));$('#atlas-count').textContent=`${rows.length} of ${ATLAS.length} on-site chapters`;$('#atlas-results').innerHTML=rows.map(x=>tile(escapeHtml(x.category),escapeHtml(x.title),escapeHtml(x.deck),`#chapter/${x.id}`)).join('')||'<div class="paper">No chapter matches. Try a broader term.</div>'}
+function atlasChapter(id){const x=ATLAS.find(x=>x.id===id);if(!x)return notFound();return `<div class="deep-layout"><article class="deep-article"><a href="#atlas" class="eyebrow">← Digestive atlas</a><h1>${escapeHtml(x.title)}</h1><p class="lede">${escapeHtml(x.deck)}</p><div class="atlas-visual">${atlasVisual(x.visual)}</div><p class="reading-meta">Groundwell chapter · Reviewed November 2026 · ${x.sections.length} sections</p>${x.sections.map(([title,...paras],i)=>`<section class="deep-section" id="chapter-${x.id}-${i}"><div class="eyebrow">${String(i+1).padStart(2,'0')} / ${String(x.sections.length).padStart(2,'0')}</div><h2>${escapeHtml(title)}</h2>${paras.map(p=>`<p>${escapeHtml(p)}</p>`).join('')}</section>`).join('')}<div class="sourcebox"><details><summary>Research notes · ${x.sources.length} sources</summary><p>Primary references used to write this on-site explanation.</p><ol>${x.sources.map(([name,url])=>`<li><a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(name)}</a></li>`).join('')}</ol></details></div><div class="related"><div class="eyebrow">Keep exploring</div><a href="#atlas">All chapters →</a><a href="#routine">Supplement routine →</a><a href="#journal">Symptom journal →</a></div></article><aside class="article-rail"><div class="eyebrow">In this chapter</div><nav>${x.sections.map(([title],i)=>`<button type="button" data-jump="chapter-${x.id}-${i}">${escapeHtml(title)}</button>`).join('')}</nav></aside></div>`}
+
+function glossaryPage(){return `${pageHeader('Reference desk','Glossary & learning paths','Define the concepts as you read, then follow a sequence of chapters that builds understanding.')}<div class="grid two path-grid">${PATHS.map(([name,desc,ids])=>`<div class="paper"><span class="tag">${ids.length} chapters</span><h2>${escapeHtml(name)}</h2><p>${escapeHtml(desc)}</p><ol>${ids.map(id=>{let x=ATLAS.find(a=>a.id===id);return `<li><a href="#chapter/${id}">${escapeHtml(x?.title||id)}</a></li>`}).join('')}</ol></div>`).join('')}</div><h2>Quick definitions</h2><input class="search" type="search" id="glossary-search" placeholder="Search a term or definition"><div id="glossary-list"></div>`}
+function renderGlossary(){let q=($('#glossary-search')?.value||'').toLowerCase();$('#glossary-list').innerHTML=GLOSSARY.filter(([term,def])=>(term+' '+def).toLowerCase().includes(q)).map(([term,def,id])=>`<div class="glossary-row"><div><h3>${escapeHtml(term)}</h3><p>${escapeHtml(def)}</p></div><a href="#chapter/${id}">Read chapter →</a></div>`).join('')||'<p>No matching definition.</p>'}
+
 function notFound(){return '<div class="paper"><h1>Page unavailable</h1><a href="#home">Return home →</a></div>'}
 function route(){
  const [page,arg]=decodeURIComponent((location.hash||'#home').slice(1)).split('/');
- const titles={home:'Overview',explore:'Explore',supplements:'Supplements',conditions:'Conditions',oral:'Oral health',mold:'Mold & air',vaccine:'Vaccine questions',watch:'Watch',people:'People',journal:'My wellness'};
+ const titles={home:'Overview',explore:'Explore',supplements:'Supplements',conditions:'Conditions',oral:'Oral health',mold:'Mold & air',vaccine:'Vaccine questions',watch:'Watch',people:'People',journal:'My wellness',atlas:'Learning atlas',chapter:'Chapter',routine:'Supplement routine',glossary:'Glossary'};
  let content;
  switch(page){
   case 'home':content=home();break;
@@ -344,7 +516,11 @@ function route(){
   case 'supplements':content=supplements();break;
   case 'nutrient':content=nutrientDetail(arg);break;
   case 'conditions':content=conditions();break;
-  case 'guide':content=conditionData[arg]?article(conditionData[arg]):notFound();break;
+  case 'atlas':content=atlasHome();break;
+  case 'chapter':content=atlasChapter(arg);break;
+  case 'routine':content=routinePage();break;
+  case 'glossary':content=glossaryPage();break;
+  case 'guide':content=deepArticles[arg]?deepPage(arg):notFound();break;
   case 'oral':content=oral();break;
   case 'vaccine':content=deepPage('vaccine');break;
   case 'mold':content=mold();break;
@@ -363,6 +539,9 @@ function route(){
  if(page==='people'){renderPeople();$('#people-search').oninput=e=>renderPeople(e.target.value)}
  if(page==='explore'){renderExplore();$('#explore-search').oninput=renderExplore;$('#explore-type').onchange=renderExplore}
  if(page==='journal')bindJournal('overview');
+ if(page==='atlas'){renderAtlas();$('#atlas-search').oninput=renderAtlas;$('#atlas-filter').onchange=renderAtlas}
+ if(page==='routine')bindRoutine();
+ if(page==='glossary'){renderGlossary();$('#glossary-search').oninput=renderGlossary}
  document.querySelectorAll('[data-jump]').forEach(b=>b.onclick=()=>document.getElementById(b.dataset.jump)?.scrollIntoView({behavior:'smooth'}));
  if(page==='mold')$('#save-mold').onclick=()=>{
   const value=$('#mold-note').value.trim();if(!value)return;

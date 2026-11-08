@@ -1,49 +1,25 @@
 # Groundwell
 
-Groundwell is a static wellness reference and personal journal for GitHub Pages. It includes guides on nutrition, supplements, oral health, mold and indoor air, and COVID vaccination questions, along with a people directory, selected videos, and a source archive.
+A static, self-contained wellness learning library and personal supplement tracker. The current edition includes 29 on-site atlas chapters, longer topic guides for nutrition, oral health, mold, autoimmune health, ADHD, depression and vaccine questions, 20 nutrient cards, an expert directory, and a personal journal. Research sources are tucked into expandable notes after the explanations.
 
-The site uses HTML, CSS, and JavaScript. It requires no build step, account, paid service, or runtime API.
+## Deploy on GitHub Pages
 
-## Publish on GitHub Pages
+Extract the site ZIP into your repository root. `index.html`, `app.js`, `routine.js`, `style.css`, `sw.js`, and `data/` must be together. Enable Pages from that root (or move the whole set into a `docs/` folder and publish from there). No build step, server, account, paid API, or subscription is required. Paths are relative, so project subpaths work.
 
-1. Place `index.html`, `app.js`, `style.css`, `sw.js`, `manifest.webmanifest`, the icon files, and the `data` folder at the root of your repository. Keep `library.json` inside `data`.
-2. Open the repository's **Settings → Pages**.
-3. Choose **Deploy from a branch**, select your publishing branch, and select **/(root)**.
-4. Open the GitHub Pages URL after deployment.
+The standalone `Groundwell-Preview.html` can be opened on its own. It is a preview, not the installable PWA; use the ZIP for GitHub Pages.
 
-If your repository publishes from a `docs` folder, place all site files together in `docs` and select **/docs** in Pages settings. The first visit requires an internet connection.
+## Learning content
 
-## Site files
+`data/atlas.js` holds the atlas chapters and reference notes. `app.js` holds the long guides, nutrient explanations, directory, search and journal. `data/library.json` holds nutrient and people records plus an archive of original links. Archive entries are labeled as catalog records; they are not presented as full on-site articles. `routine.js` holds the supplement planner.
 
-| File | Purpose |
-| --- | --- |
-| `index.html` | Page shell, navigation, and opening screen |
-| `style.css` | Layout, colors, typography, and mobile styles |
-| `app.js` | Guides, search, videos, profile, and journal |
-| `data/library.json` | Nutrients, people, and source archive |
-| `manifest.webmanifest` and icons | Installable app name and icons |
-| `sw.js` | Offline cache for core site files |
+Search in **Explore** indexes the written chapter text as well as nutrients and the other guides. External links are optional source notes, not the main explanation. Videos need an internet connection and load only when requested.
 
-## Update content
+## Supplement routine and backups
 
-Edit guides and video entries in `app.js`. Edit nutrient, people, and archive records in `data/library.json`. Keep JSON syntax valid.
+Each person can have a separate routine on the same browser. Enter the product's exact label name, serving, times, days, units per dose and bottle quantity. Tap **Taken** or **Skip**. The capsule graphic displays the portion taken today. Remaining quantity is estimated from recorded taken doses since the stock date; a refill creates a new stock baseline. The estimate cannot account for doses consumed outside the app. The calendar export contains the next 28 days of scheduled reminders; import it into your phone calendar to use that device's own notifications. In-app due items appear when the page is opened. Browser background alerts are not promised.
 
-When core content changes, update the `CACHE` name near the top of `sw.js`, such as changing `groundwell-v2` to `groundwell-v3`. Publish the changed files together. An installed copy may need to be closed and reopened before the new cache takes over.
+Data is stored locally on that device. **Export backup** includes the journal and routine in one JSON file. Restore replaces the current local records, so keep a backup before changing devices or clearing browser data. The initial site load needs a connection; after the service worker caches the core files, repeat visits can work offline. Videos remain online-only.
 
-## Personal records
+## Updating
 
-**My wellness** stores the profile and journal entries in the browser on that device. There is no account or automatic sync.
-
-Use **Export all data** to download a JSON backup. Use **Restore backup** to bring it into another browser or device. Restoring replaces the current profile and entries on that device. Clearing browser site data can remove local records.
-
-Profile nutrient targets describe total daily intake from food and supplements. Groundwell does not calculate supplement doses from body weight.
-
-## Videos and offline reading
-
-Written guides and the journal can work offline after the site has loaded and cached. Videos require a connection. The video player contacts its host only after a visitor presses **Play video here**. Written viewing notes remain available without playback.
-
-If a page appears outdated after publishing, reopen the site and check the cache version in `sw.js`. If search or a directory fails to load, confirm that `data/library.json` exists at the published path and contains valid JSON.
-
-## Editorial upkeep
-
-Review health content before publishing changes. Keep review dates, claims, uncertainty, and source notes aligned. Groundwell articles should remain understandable without opening their external references.
+Edit the content files, then increment the `CACHE` name in `sw.js` so installed copies refresh their offline files. Review every health claim and source before publishing changes. This is an educational reference and tracking tool, not a diagnostic service or individualized dosage generator.
