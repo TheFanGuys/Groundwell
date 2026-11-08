@@ -1,1 +1,0 @@
-{"private":true,"scripts":{"dev":"node dev.cjs","check":"node --check app.js && node --check sw.js && node -e \"if(!Array.isArray(require('./dispatch.json')))process.exit(1)\""},"dependencies":{"@tesseract.js-data/eng":"^1.0.0","chart.js":"^4.6.1","tesseract.js":"^6.0.1"}}
