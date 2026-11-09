@@ -61,8 +61,13 @@ function home(){
   tile('Daily practice','Oral health','A practical guide to teeth, gums, food choices and dry mouth.','#oral')
  ].join('');
  return `<section class="hero"><div class="eyebrow">A quieter kind of wellness research</div><h1>Understand your health.<br>Keep your own record.</h1><p>Explore natural health topics in one place, with clear explanations, practical context, and tools for tracking what matters to you.</p><div class="hero-actions"><a class="button" href="#explore">Explore the library</a><a class="button alt" href="#journal">Open my wellness</a></div></section>
+ ${section('Field guides',`<div class="grid two">${tile('Start here','The gut research desk','Investigate bowel patterns, testing, diet, fiber and supplement effects.','#field/gut')}${tile('Start here','Make sense of a supplement stack','Compare label units, overlap, timing, limits and results.','#field/stack')}</div>`)}
+ ${section('Midlife digestion',`<div class="grid two">${tile('Research guide','Digestive changes around midlife','What the research shows, what it cannot prove, and how to investigate a new pattern.','#field/midlife')}${tile('Private tracking','Digestive symptom log','Record stool form, urgency, pain, bloating and context for each person.','#gut-log')}</div>`)}
+ ${section('Immune health',`<div class="grid two">${tile('Research guide','Autoimmune conditions and natural approaches','Condition-specific diet, symptom and evidence questions.','#field/autoimmune')}${tile('Related dossier','Autoimmune conditions in context','Read the companion research comparison.','#dossier/autoimmune-research')}</div>`)}
+ ${section('New field guides',`<div class="grid two">${tile('Oral health','The oral health research desk','Enamel, gums, saliva, home care and claims explained.','#field/oral')}${tile('Indoor environment','The damp-building research desk','A water-to-closeout investigation with testing limits.','#field/moldhome')}</div>`)}
  ${section('Research dossiers',`<div class="grid two">${tile('Deep study','H. pylori: infection to confirmed cure','Mechanism, testing, treatment evidence, natural adjuncts and a test-to-cure timeline.','#dossier/hpylori')}${tile('Deep study','IBS: beyond a food list','Gut–brain pathways, fiber, FODMAP, probiotics and a disciplined experiment.','#dossier/ibs')}${tile('Field guide','Damp buildings and mold','Exposure, testing limits, physical remediation and clinical history.','#dossier/mold')}</div>`)}
  <div class="paper" style="margin:18px 0"><a class="button dark" href="#research">Open the research desk →</a><p>Browse the expanded dossiers by area and search their full text.</p></div>
+ ${section('Explore the body',`<div class="grid two">${tile('Interactive anatomy','3D human body','Rotate and zoom a schematic body. Tap an organ for an on-site explanation and related research.','#body')}${tile('Read more','Digestive health atlas','Follow the organs into a deeper collection of digestive chapters.','#atlas')}</div>`)}
  ${section('Dive into the atlas',`<div class="grid two">${tile('Learn','Digestive health atlas','Explore symptoms, mechanisms, IBS, reflux, H. pylori, celiac disease and more with diagrams.','#atlas')}${tile('Daily practice','Supplement routine','Track each dose, see your daily capsule fill, and anticipate refills.','#routine')}</div>`)}
  ${section('Start with a topic',`<div class="grid three">${featured}</div>`,['All topics','#conditions'])}
  ${section('A reference you can use',`<div class="grid two">${tile('Read','Nutrition foundations','Build a food pattern and research individual needs without a wall of links.','#guide/nutrition')}${tile('Research','Vaccine questions','Ingredients, known effects and what detox claims need to prove.','#vaccine')}</div>`)}
@@ -395,7 +400,7 @@ function nutrientDetail(id){
  if(!n)return notFound();
  const f=n.fields,person=currentNutrientProfile(),target=person?.sex?profileTarget(n.name,person):null,relatedDossier=({'vitamin-d':'vitamin-d','magnesium':'magnesium','calcium':'calcium','iron':'iron','zinc':'zinc','vitamin-b12':'b12','vitamin-b6':'b6-neuropathy','vitamin-b9':'folate','iodine':'iodine-thyroid','selenium':'selenium','vitamin-k':'vitamin-k','omega-3-fats':'omega3'})[id];
  return `<div class="article"><a href="#supplements" class="eyebrow">← Nutrient library</a><h1>${escapeHtml(n.name)}</h1><p class="lede">${escapeHtml(f['What it does'])}</p><p class="muted">Also known as ${escapeHtml(n.aliases)}</p>${nutrientProfileChooser()}${nutrientScale(id,person)}${target?`<div class="profile-strip"><strong>Profile daily target · ${escapeHtml(target)}</strong><p>This is a total intake target from food and supplements, not a suggested supplement dose.</p></div>`:''}
- <div class="detail-grid"><section><h3>History</h3><p>${escapeHtml(f.History)}</p></section><section><h3>Food sources</h3><p>${escapeHtml(f['Food sources'])}</p></section><section><h3>General adult intake</h3><p>${escapeHtml(f['U.S. daily intake'])}</p></section><section><h3>Timing & use</h3><p>${escapeHtml(f['When to take it'])}</p></section></div>${nutrientDepth[id]?`<div class="nutrient-reading"><h2>Forms and food context</h2><p>${escapeHtml(nutrientDepth[id].focus)}</p><h2>What the evidence addresses</h2><p>${escapeHtml(nutrientDepth[id].use)}</p><h2>Practical use</h2><p>${escapeHtml(nutrientDepth[id].practice)}</p><div class="insight"><strong>Question to ask</strong><br>${escapeHtml(nutrientDepth[id].question)}</div></div>`:''}<div class="callout"><strong>Limits and considerations</strong><br>${escapeHtml(f['Upper limit and cautions'])}</div><p>Daily intake guidance varies by life stage and individual circumstances. Record any product form and amount in My wellness before comparing your total intake.</p><div class="sourcebox"><details><summary>Reference and review notes</summary><p>${sources.nutrient} Reviewed November 2026.</p><a href="${escapeHtml(n.source)}" target="_blank" rel="noopener noreferrer">Detailed nutrient reference ↗</a></details></div><p style="margin-top:30px">${relatedDossier?`<a class="button dark" href="#dossier/${relatedDossier}">Read the deeper research dossier</a> `:''}<a class="button dark" href="#routine">Add to supplement routine</a></p></div>`;
+ ${TIMING_GUIDE[id]?`<section class="paper timing-guide"><div class="eyebrow">Practical supplement guide</div><h2>When and how to take it</h2><div class="timing-grid"><div><h3>Best time</h3><p>${escapeHtml(TIMING_GUIDE[id].when)}</p></div><div><h3>Amount and method</h3><p>${escapeHtml(TIMING_GUIDE[id].how)}</p></div><div><h3>Check before taking</h3><p>${escapeHtml(TIMING_GUIDE[id].watch)}</p></div></div><p class="muted">These are general instructions. The daily target above describes total intake, not a personalized supplement prescription.</p></section>`:''}<div class="detail-grid"><section><h3>History</h3><p>${escapeHtml(f.History)}</p></section><section><h3>Food sources</h3><p>${escapeHtml(f['Food sources'])}</p></section><section><h3>General adult intake</h3><p>${escapeHtml(f['U.S. daily intake'])}</p></section><section><h3>Timing & use</h3><p>${escapeHtml(f['When to take it'])}</p></section></div>${nutrientDepth[id]?`<div class="nutrient-reading"><h2>Forms and food context</h2><p>${escapeHtml(nutrientDepth[id].focus)}</p><h2>What the evidence addresses</h2><p>${escapeHtml(nutrientDepth[id].use)}</p><h2>Practical use</h2><p>${escapeHtml(nutrientDepth[id].practice)}</p><div class="insight"><strong>Question to ask</strong><br>${escapeHtml(nutrientDepth[id].question)}</div></div>`:''}<div class="callout"><strong>Limits and considerations</strong><br>${escapeHtml(f['Upper limit and cautions'])}</div><p>Daily intake guidance varies by life stage and individual circumstances. Record any product form and amount in My wellness before comparing your total intake.</p><div class="sourcebox"><details><summary>Reference and review notes</summary><p>${sources.nutrient} Reviewed November 2026.</p><a href="${escapeHtml(n.source)}" target="_blank" rel="noopener noreferrer">Detailed nutrient reference ↗</a></details></div><p style="margin-top:30px">${relatedDossier?`<a class="button dark" href="#dossier/${relatedDossier}">Read the deeper research dossier</a> `:''}<a class="button dark" href="#routine">Add to supplement routine</a></p></div>`;
 }
 function renderNutrients(q=''){
  const matches=library.nutrients.filter(n=>(n.name+' '+n.aliases+' '+n.fields['Food sources']).toLowerCase().includes(q.toLowerCase().trim()));
@@ -425,9 +430,10 @@ function explore(){
 }
 function renderExplore(){
  const q=($('#explore-search')?.value||'').trim().toLowerCase(),type=$('#explore-type')?.value||'all';
- const guides=[...ATLAS.map(x=>({name:x.title,text:x.deck+' '+x.sections.flat().join(' '),href:'#chapter/'+x.id})),{name:'Mold & indoor air',text:deepArticles.mold.sections.map(x=>x.body.join(' ')).join(' '),href:'#mold'},{name:'Oral health',text:deepArticles.oral.sections.map(x=>x.body.join(' ')).join(' '),href:'#oral'},
+ const guides=[...Object.entries(FIELD_GUIDES).map(([id,x])=>({name:x.title,text:x.deck+' '+x.chapters.map(c=>c.title+' '+c.paragraphs.join(' ')).join(' '),href:'#field/'+id})),...ATLAS.map(x=>({name:x.title,text:x.deck+' '+x.sections.flat().join(' '),href:'#chapter/'+x.id})),{name:'Mold & indoor air',text:deepArticles.mold.sections.map(x=>x.body.join(' ')).join(' '),href:'#mold'},{name:'Oral health',text:deepArticles.oral.sections.map(x=>x.body.join(' ')).join(' '),href:'#oral'},
  {name:'COVID vaccination',text:deepArticles.vaccine.sections.map(x=>x.body.join(' ')).join(' '),href:'#vaccine'},...Object.keys(conditionData).map(id=>({name:deepArticles[id].title,text:deepArticles[id].deck+' '+deepArticles[id].sections.map(x=>x.body.join(' ')).join(' '),href:'#guide/'+id}))];
  const all=[
+ ...BODY_ORGANS.map(o=>({type:'guide',title:o.name+' · body atlas',description:o.system+' system · interactive anatomy',text:o.sections.map(x=>x.join(' ')).join(' '),href:'#body'})),
  ...Object.entries(MONOGRAPHS).map(([id,x])=>({type:'guide',title:x.title,description:x.deck,text:x.sections.map(s=>s.title+' '+s.body.join(' ')).join(' '),href:'#dossier/'+id})),
  ...guides.map(x=>({type:'guide',title:x.name,description:'Groundwell guide',text:x.text,href:x.href})),
  ...library.nutrients.map(x=>({type:'nutrient',title:x.name,description:x.fields['What it does'],text:x.aliases+' '+Object.values(x.fields).join(' '),href:'#nutrient/'+x.id})),
@@ -560,10 +566,11 @@ function renderFlags(){let q=($('#flag-search')?.value||'').toLowerCase(),type=$
 function notFound(){return '<div class="paper"><h1>Page unavailable</h1><a href="#home">Return home →</a></div>'}
 function route(){
  const [page,arg]=decodeURIComponent((location.hash||'#home').slice(1)).split('/');
- const titles={home:'Overview',explore:'Explore',supplements:'Supplements',conditions:'Conditions',oral:'Oral health',mold:'Mold & air',vaccine:'Vaccine questions',watch:'Watch',people:'People',journal:'My wellness',atlas:'Learning atlas',chapter:'Chapter',dossier:'Research dossier',research:'Research desk',flags:'Interaction index',routine:'Supplement routine',glossary:'Glossary'};
+ const titles={home:'Overview',body:'Body atlas',explore:'Explore',supplements:'Supplements',conditions:'Conditions',oral:'Oral health',mold:'Mold & air',vaccine:'Vaccine questions',watch:'Watch',people:'People',journal:'My wellness',atlas:'Learning atlas',chapter:'Chapter',dossier:'Research dossier',research:'Research desk',field:'Field guide','gut-log':'Digestive log',flags:'Interaction index',routine:'Supplement routine',glossary:'Glossary'};
  let content;
  switch(page){
   case 'home':content=home();break;
+  case 'body':content=bodyAtlasPage();break;
   case 'explore':content=explore();break;
   case 'supplements':content=supplements();break;
   case 'nutrient':content=nutrientDetail(arg);break;
@@ -572,6 +579,8 @@ function route(){
   case 'chapter':content=MONOGRAPHS[arg]?monographPage(arg):atlasChapter(arg);break;
   case 'routine':content=routinePage();break;
   case 'dossier':content=monographPage(arg);break;
+  case 'field':content=fieldGuidePage(arg);break;
+  case 'gut-log':content=gutLogPage();break;
   case 'research':content=researchDesk();break;
   case 'flags':content=flagLibrary();break;
   case 'glossary':content=glossaryPage();break;
@@ -590,6 +599,7 @@ function route(){
  view.innerHTML=content;
  $('#breadcrumb').textContent='Wellness reference / '+(titles[page]||'Article');
  document.querySelectorAll('[data-route]').forEach(a=>a.classList.toggle('active',a.dataset.route===page));
+ if(page==='body')bindBodyAtlas();
  if(page==='supplements'){renderNutrients();$('#nutrient-search').oninput=e=>renderNutrients(e.target.value)}
  if(page==='nutrient'){let select=$('#nutrient-person');if(select)select.onchange=e=>{nutrientProfileId=e.target.value;view.innerHTML=nutrientDetail(arg);$('#nutrient-person').onchange=select.onchange}}
  if(page==='people'){renderPeople();$('#people-search').oninput=e=>renderPeople(e.target.value)}
@@ -597,6 +607,8 @@ function route(){
  if(page==='journal')bindJournal('overview');
  if(page==='atlas'){renderAtlas();$('#atlas-search').oninput=renderAtlas;$('#atlas-filter').onchange=renderAtlas}
  if(page==='research'){renderResearch();$('#research-search').oninput=renderResearch;$('#research-filter').onchange=renderResearch}
+ if(page==='field')bindFieldGuide(arg);
+ if(page==='gut-log')bindGutLog();
  if(page==='flags'){renderFlags();$('#flag-search').oninput=renderFlags;$('#flag-type').onchange=renderFlags}
  if(page==='routine')bindRoutine();
  if(page==='glossary'){renderGlossary();$('#glossary-search').oninput=renderGlossary}

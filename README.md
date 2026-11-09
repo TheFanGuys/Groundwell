@@ -1,6 +1,6 @@
 # Groundwell
 
-A static, self-contained wellness learning library and personal supplement tracker. The current edition includes 25 focused research dossiers, including longer H. pylori, IBS, and damp-building studies, plus 29 concise topic briefs, longer topic guides for nutrition, oral health, mold, autoimmune health, ADHD, depression and vaccine questions, 20 nutrient cards, an expert directory, and a personal journal. Research sources are tucked into expandable notes after the explanations.
+A static, self-contained wellness learning library and personal supplement tracker. The current edition includes six connected field guides and 25 focused research dossiers, including longer H. pylori, IBS, and damp-building studies, plus 29 concise topic briefs, longer topic guides for nutrition, oral health, mold, autoimmune health, ADHD, depression and vaccine questions, 20 nutrient cards, an expert directory, and a personal journal. Research sources are tucked into expandable notes after the explanations.
 
 ## Deploy on GitHub Pages
 
@@ -10,7 +10,7 @@ The standalone `Groundwell-Preview.html` can be opened on its own. It is a previ
 
 ## Learning content
 
-`data/monographs.js`, `data/volume2.js`, and `data/volume3.js` hold the research dossiers, evidence comparisons, and reference notes. `data/atlas.js` holds the concise topic briefs, glossary, and reading paths. `app.js` holds the long guides, nutrient explanations, directory, search and journal. `data/library.json` holds nutrient and people records plus an archive of original links. Archive entries are labeled as catalog records; they are not presented as full on-site articles. `routine.js` holds the supplement planner. `data/interactions.js` holds a limited, curated interaction index; it is not a complete safety screen.
+`data/fieldguides.js`, `data/fieldguides2.js`, `data/fieldnotes.js`, `data/fieldguides3.js`, `data/fieldguides4.js`, `field-ui.js`, and `field-extra.js` hold the gut, supplement, oral, damp-building, midlife digestive and autoimmune field guides and their worksheets. `gut-log.js` adds a person-specific digestive symptom log; entries are included in the existing My wellness JSON backup. `data/monographs.js`, `data/volume2.js`, and `data/volume3.js` hold the research dossiers, evidence comparisons, and reference notes. `data/timing.js` provides a practical timing, form, amount, and caution guide for each of the 20 nutrient cards. The reference target is total intake and must not be treated as a prescribed capsule dose. `data/atlas.js` holds the concise topic briefs, glossary, and reading paths. `app.js` holds the long guides, nutrient explanations, directory, search and journal. `data/library.json` holds nutrient and people records plus an archive of original links. Archive entries are labeled as catalog records; they are not presented as full on-site articles. `routine.js` holds the supplement planner. `data/interactions.js` holds a limited, curated interaction index; it is not a complete safety screen.
 
 Search in **Explore** indexes the written chapter text as well as nutrients and the other guides. External links are optional source notes, not the main explanation. Videos need an internet connection and load only when requested.
 
